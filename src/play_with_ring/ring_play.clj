@@ -10,6 +10,18 @@
 (defroutes basic-stuff
   (GET "/" request
     "Welcome to Play with Ring")
+
+  (POST "/" request
+    ;; (println (pr-str request))
+    ;; (str "POST Welcome to Play with Ring")
+    ;; {:body {:the-request-is (pr-str request)}}
+    (let [headers (-> request :headers)
+          body (-> request :body slurp)]
+      (println "#### [headers body] =" [(pr-str headers)
+                                        (pr-str body)])
+      (pr-str [body
+               request])))
+
   (GET "/hello" request
     ;; TODO: How to convert Clojure to JSON?
     "Hello"))
